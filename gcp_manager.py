@@ -1,4 +1,7 @@
 import sys, glob, os
+#need to then change cwd to the local directory if calling from elsewhere
+scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
+os.chdir(scriptPath)
 sys.path.append('./scripts/')
 
 import uploader, downloader, bucket_management
@@ -16,7 +19,7 @@ def upload(dir_start):
             #Once the file has been uploaded it should be removed from local
             if status==True:
                 print('Success up')
-                os.remove(os.path.join(dirpath, f))
+                #os.remove(os.path.join(dirpath, f))
 
 def download(target_bucket, prefix_path, down_dir):
     blobs=bucket_management.list_items_in_subbucket(target_bucket, prefix_path, credentials) #Get all the blobs in the bucket with prefix of choice
