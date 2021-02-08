@@ -19,7 +19,9 @@ def upload(dir_start):
             #Once the file has been uploaded it should be removed from local
             if status==True:
                 print('Success up')
-                #os.remove(os.path.join(dirpath, f))
+                os.remove(os.path.join(dirpath, f))
+            else:
+                print('Failure upload')
 
 def download(target_bucket, prefix_path, down_dir):
     blobs=bucket_management.list_items_in_subbucket(target_bucket, prefix_path, credentials) #Get all the blobs in the bucket with prefix of choice
